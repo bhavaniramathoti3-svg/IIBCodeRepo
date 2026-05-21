@@ -1,0 +1,9 @@
+
+
+CREATE COMPUTE MODULE Http_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET Environment.Variable.Result[] = PASSTHRU('SELECT AGENT_NAME, PROTOCOL FROM aq$_internet_agents');
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
