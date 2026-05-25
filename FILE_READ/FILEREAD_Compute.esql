@@ -1,0 +1,8 @@
+
+
+CREATE COMPUTE MODULE FILEREAD_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+	SET Environment.Variable.Input = InputRoot.XMLNSC.employee_information;
+	END;
+END MODULE;

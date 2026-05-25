@@ -1,0 +1,33 @@
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE COMPUTE MODULE Functions_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE Inref REFERENCE TO InputRoot.JSON.Data;
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE outref REFERENCE TO OutputRoot.JSON.Data;
+		SET outref.employeeid = Inref.employeeid;
+		SET outref.firstname = UPPER(Inref.firstname);
+		SET outref.lastname = LOWER(Inref.lastname);
+		SET outref.mobilenum = CAST(Inref.mobilenum AS INTEGER);
+		IF CONTAINS(Inref.location,'a') THEN
+			SET outref.location = TRIM(BOTH 'a' FROM Inref.location);
+		END IF;
+		SET outref.time = CURRENT_TIME;
+		SET outref.date = CURRENT_DATE;
+		SET outref.fullname = Inref.firstname||' '||Inref.lastname;
+		IF LENGTH(Inref.age)>2 THEN
+			SET outref.age = SUBSTRING(Inref.age FROM 1 FOR 2);
+		END IF;
+	END;
+END MODULE;

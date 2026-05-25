@@ -1,0 +1,35 @@
+
+
+CREATE COMPUTE MODULE HTTP_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.XMLNSC.user_information.user_details	= Environment.Variable.Inputdata;
+		SET OutputLocalEnvironment.Destination.MQ.DestinationData.queueManagerName	= 'TESTPRACTICE';
+		SET OutputLocalEnvironment.Destination.MQ.DestinationData.queueName	= 'OUT1';
+		PROPAGATE TO TERMINAL 'out';
+		
+	    
+	    DECLARE INREF REFERENCE TO Environment.Variable.Inputdata.Item[1];
+	    DECLARE I INTEGER 1;
+	    CREATE FIELD OutputRoot.XMLNSC.user_details;
+	    DECLARE OUTREF REFERENCE TO  OutputRoot.XMLNSC.user_details;
+	    WHILE LASTMOVE(INREF) DO
+	    	SET OUTREF.user_details[I].user_Name= INREF.user_Name;
+	    	SET OUTREF.user_details[I].user_Id= INREF.user_Id;
+	    	SET OUTREF.user_details[I].user_mobilenum= INREF.user_mobilenum;
+	    	SET OUTREF.user_details[I].user_Add= INREF.user_Add;
+	    	SET OUTREF.user_details[I].user_email= INREF.user_email;
+	    	SET I = I+1;
+	    MOVE INREF NEXTSIBLING;
+	    END WHILE;
+		SET OutputLocalEnvironment.Destination.MQ.DestinationData.queueManagerName	= 'TESTPRACTICE';
+		SET OutputLocalEnvironment.Destination.MQ.DestinationData.queueName	= 'OUT2';
+		PROPAGATE TO TERMINAL 'out';
+		
+		SET OutputRoot.XMLNSC.user_information.user_details	= Environment.Variable.Inputdata;
+		SET OutputLocalEnvironment.Destination.File.Directory	= 'C:\Bhavani\IIB-ACE\Practice\LocalEnvironment\OUTPUT';
+        SET OutputLocalEnvironment.Destination.File.Name  = Environment.Variable.fileName;
+		PROPAGATE TO TERMINAL 'out1';
+		RETURN FALSE;
+	END;
+END MODULE;

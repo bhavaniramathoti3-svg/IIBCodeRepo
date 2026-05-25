@@ -1,0 +1,17 @@
+
+
+CREATE COMPUTE MODULE FILEREAD_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data.user_details	= Environment.Variable.Input;
+		PROPAGATE TO TERMINAL 'out';
+		
+		SET OutputRoot.XMLNSC.employee_information	= Environment.Variable.Input;
+		PROPAGATE TO TERMINAL 'out1';
+		
+		SET OutputRoot.JSON.Data.Sucess_code	= 'SSSSS';
+		SET OutputRoot.JSON.Data.Sucess_message	= 'THE DATA SUCCESSFULLY SEND TO MQ AND FILE';
+		PROPAGATE TO TERMINAL 'out2';
+		RETURN FALSE;
+	END;
+END MODULE;

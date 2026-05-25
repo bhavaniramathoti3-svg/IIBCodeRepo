@@ -1,0 +1,9 @@
+
+
+CREATE COMPUTE MODULE MQ_GET_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET Environment.XMLDATA.Inputdata	= InputRoot.XMLNSC.employee_information;
+		
+	END;
+END MODULE;

@@ -1,0 +1,11 @@
+
+
+CREATE COMPUTE MODULE HTTP_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET Environment.Variable.Inputdata 	= InputRoot.JSON.Data.user_details;
+		SET Environment.Variable.fileName	=	SUBSTRING(InputRoot.HTTPInputHeader."X-Original-HTTP-Command" FROM 28 FOR 11)||'.DATA'; 
+		PROPAGATE TO TERMINAL 'out1';
+		SET OutputRoot.XMLNSC.user_details[1] = InputRoot.JSON.Data.user_details.Item[1];
+	END;
+END MODULE;

@@ -1,0 +1,15 @@
+
+
+CREATE COMPUTE MODULE MQ_GET_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data.user_details	= Environment.XMLDATA.Inputdata;
+		PROPAGATE TO TERMINAL 'out1';
+		
+		SET OutputRoot.JSON.Data.user_details	= Environment.XMLDATA.Inputdata;
+		PROPAGATE TO TERMINAL 'out2';
+		
+		SET OutputRoot.JSON.Data.user_details	= Environment.XMLDATA.Inputdata;
+	     
+	END;
+END MODULE;
