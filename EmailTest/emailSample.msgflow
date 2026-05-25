@@ -12,7 +12,7 @@
       <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="1255,266">
         <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmEmailOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="894,261" smtpServer="localhost:1025">
+      <nodes xmi:type="ComIbmEmailOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="894,261" smtpServer="localhost:1025" bodyContentType="text/html">
         <translation xmi:type="utility:ConstantString" string="Email Output"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="568,448" computeExpression="esql://routine/#emailSample_Compute.Main" computeMode="all">

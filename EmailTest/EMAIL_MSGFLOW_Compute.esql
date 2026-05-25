@@ -1,0 +1,15 @@
+
+
+CREATE COMPUTE MODULE EMAIL_MSGFLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+	DECLARE Body CHARACTER '';
+	SET OutputRoot.EmailOutputHeader.Subject	= 'Test Email from ACE';
+	SET OutputRoot.EmailOutputHeader.To	= 'receiver@gmail.com';
+	SET OutputRoot.EmailOutputHeader.From = 'yourmail@gmail.com';
+	SET Body	=	'Hello,This test verification email from ACE.
+		BestRegards,
+		BHAVANI';
+	SET OutputRoot.BLOB.BLOB	=	CAST(Body AS BLOB CCSID 1208 ENCODING 546);
+	END;
+END MODULE;
